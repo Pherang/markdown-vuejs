@@ -15,6 +15,17 @@
 
   <!-- Notebook app -->
   <div id="notebook">
+    <!-- Sidebar -->
+    <aside class="side-bar">
+      <div class="toolbar">
+        <!-- The material-icons class uses ligatures to turn words into icons  --> 
+        <button v-bind:title="notes.length + ' note(s) already'" v-on:click="addNote"><i class="material-icons">add</i> Add Note</button>
+      </div>
+      <div class="notes">
+        <!-- Note list -->  
+        <div class="note" v-for="note in notes">{{ note.title }}</div>
+      </div>
+    </aside>
 
     <!-- Main pane -->
     <section class="main">

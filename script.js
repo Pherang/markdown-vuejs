@@ -8,7 +8,8 @@ new Vue({
   // Some data
   data () {
     return {
-      content: 'This is a note'
+      content: 'This is a note',
+      notes: []
     }
   },
   computed: {
@@ -31,6 +32,18 @@ new Vue({
     },
     reportOperation (opName) {
       console.log('The', opName, 'operation was completed!')
+    },
+    addNote () {
+      const time = Date.now()
+      const note = {
+        id: String(time),
+        title: 'New note ' + (this.notes.length + 1),
+        content: '**Hi!** This notebook is using [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) for formatting!',
+        created: time,
+        favorite: false
+      }
+      // Add a note to the array notes in Data property
+      this.notes.push(note)
     }
   },
   // An alternative to this is to init the data property instead of the code below.
