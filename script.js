@@ -16,10 +16,7 @@ new Vue({
   computed: {
     notePreview () {
       // Return markdown converted to HTML
-      return this.selectedNote ? marked(this.selectedNote.content) : ''
-    },
-    selectedNote () {
-      return this.notes.find(note => note.id === this.selectedId)
+      return marked(this.content)
     }
   },
   watch: {
