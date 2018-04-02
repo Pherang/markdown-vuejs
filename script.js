@@ -33,6 +33,7 @@ new Vue({
       console.log('The', opName, 'operation was completed!')
     }
   },
+  // An alternative to this is to init the data property instead of the code below.
   created () {
     // Set content to the value stored in localStorage of the users browser
     this.content = localStorage.getItem('content') || 'You can write in **markdown** here'
