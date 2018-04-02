@@ -15,6 +15,7 @@
 
   <!-- Notebook app -->
   <div id="notebook">
+
     <!-- Sidebar -->
     <aside class="side-bar">
       <div class="toolbar">
@@ -23,7 +24,7 @@
       </div>
       <div class="notes">
         <!-- Note list -->  
-        <div class="note" v-for="note in notes">{{ note.title }}</div>
+        <div class="note" v-for="note in notes" @click="selectNote(note)">{{ note.title }}</div>
       </div>
     </aside>
 

@@ -9,7 +9,8 @@ new Vue({
   data () {
     return {
       content: 'This is a note',
-      notes: []
+      notes: [],
+      selectedId: null
     }
   },
   computed: {
@@ -27,6 +28,7 @@ new Vue({
   methods: {
     saveNote (val) {
       console.log('Saving note: ', val)
+      // Saves to localStorage in user's browser. If this was a fullstack app, we could save to a database as well.
       localStorage.setItem('content', val)
       this.reportOperation('saving note')
     },
@@ -44,11 +46,15 @@ new Vue({
       }
       // Add a note to the array notes in Data property
       this.notes.push(note)
+    },
+    selectNote (note) {
+      this.selectedId = note.id
+      console.log('Note was selected', note.id)
     }
   },
   // An alternative to this is to init the data property instead of the code below.
-  created () {
-    // Set content to the value stored in localStorage of the users browser
+  created () { // Set content to the value stored in localStorage of the users browser this overwrites what is assigned when data() is called above
+    // This happens because of the sequence of a Vue's life cycle.
     this.content = localStorage.getItem('content') || 'You can write in **markdown** here'
   }
 })
