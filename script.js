@@ -27,6 +27,16 @@ new Vue({
     saveNote (val) {
       console.log('Saving note: ', val)
       localStorage.setItem('content', val)
+      this.reportOperation('saving note')
+    },
+    reportOperation (opName) {
+      console.log('The', opName, 'operation was completed!')
     }
+  },
+  created () {
+    // Set content to the value stored in localStorage of the users browser
+    this.content = localStorage.getItem('content') || 'You can write in **markdown** here'
   }
 })
+
+console.log('Restored note:', localStorage.getItem('content'))
