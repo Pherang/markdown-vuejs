@@ -56,7 +56,12 @@ new Vue({
     },
     removeNote () {
       if(this.selectedNote && confirm('Delete this note? Are you sure?')) {
-        console.log('Removing note', JSON.stringify(this.selectedNote.title))
+        const index = this.notes.indexOf(this.selectedNote)
+        if (index !== -1) {
+          // The console message has to go before the splice otherwise the object isn't found.
+          console.log('Removing note', JSON.stringify(this.selectedNote.title))
+          this.notes.splice(index, 1)
+        }
       }
     }
   },
