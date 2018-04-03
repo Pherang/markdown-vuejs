@@ -63,6 +63,9 @@ new Vue({
           this.notes.splice(index, 1)
         }
       }
+    },
+    favoriteNote () {
+      this.selectedNote.favorite ^= true
     }
   },
   // An alternative to this is to init the data property instead of the code below.

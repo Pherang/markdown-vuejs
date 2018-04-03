@@ -33,6 +33,7 @@
       <section class="main">
         <div class="toolbar">
           <input v-model="selectedNote.title" placeholder="Note title">          
+          <button @click="favoriteNote" title="Favorite Note"><i class="material-icons">{{selectedNote.favorite ? 'star' : 'star_border'}}</i></button>
           <button @click="removeNote" title="Remove Note"><i class="material-icons">delete</i>Delete</button>
         </div>
 
