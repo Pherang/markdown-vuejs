@@ -8,9 +8,8 @@ new Vue({
   // Some data
   data () {
     return {
-      content: 'This is a note',
-      notes: [],
-      selectedId: null
+      notes: JSON.parse(localStorage.getItem('notes')) || [],
+      selectedId: localStorage.getItem('selected-id')
     }
   },
   computed: {
@@ -25,13 +24,18 @@ new Vue({
   watch: {
     // This is the syntax when the options deep, immediate aren't required. handler (val, old) { } would be used if they were.
     notes: {
-      handler: 'saveNotes'
+      handler: 'saveNotes',
+      deep: true
+    },
+    // This appears to be a shorthand for selectedId: function(val) { ... }
+    selectedId (val) {
+      localStorage.setItem('selected-id', val)
     }
   },
   methods: {
     saveNotes () {
       // Saves to localStorage in user's browser. If this was a fullstack app, we could save to a database as well.
-      localStorage.setItem('content', JSON.stringify(this.notes))
+      localStorage.setItem('notes', JSON.stringify(this.notes))
       console.log('Notes saved', new Date())
     },
     addNote () {

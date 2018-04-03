@@ -8,7 +8,7 @@
 </head>
 <body>
   <!-- Include the library in the page -->
-  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <!-- <script src="https://unpkg.com/vue/dist/vue.js"></script>-->
   <!-- <script src="https://unpkg.com/marked"></script> -->
   <script src="./vue.js"></script>
   <script src="./marked.min.js"></script>
@@ -31,6 +31,10 @@
     <!-- Main pane -->
     <template v-if="selectedNote">
       <section class="main">
+        <div class="toolbar">
+          
+        </div>
+
         <textarea v-model="selectedNote.content"></textarea>
       </section>
 
