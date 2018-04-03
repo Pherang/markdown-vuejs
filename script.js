@@ -1,3 +1,7 @@
+// // Register a filter with a global method
+
+Vue.filter('date', time => moment(time).format('DD/MM/YY, HH:mm'))
+
 // New VueJS instance
 new Vue({
   name: 'notebook',
@@ -13,6 +17,27 @@ new Vue({
     }
   },
   computed: {
+    linesCount () {
+      if (this.selectedNote) {
+        return this.selectedNote.content.split(/\r\n|\r|\n/).length
+      }
+    },
+    wordsCount () {
+      if (this.selectedNote) {
+        let s = this.selectedNote.content
+        // turn new lines into white space the white space is used for word counts.
+        s = s.replace(/\n/g, ' ')
+        s = s.replace(/(^\s*)|(\s*$)/gi, '')
+        s = s.replace(/\s\s+/gi, ' ')
+        console.log(s.split(' '))
+        return s.split(' ').length
+      }
+    },
+    charactersCount () {
+      if (this.selectedNote) {
+        return this.selectedNote.content.split('').length
+      }
+    },
     notePreview () {
       // Return markdown converted to HTML
       return this.selectedNote ? marked(this.selectedNote.content) : ''
