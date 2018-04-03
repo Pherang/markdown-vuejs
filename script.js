@@ -19,6 +19,13 @@ new Vue({
     },
     selectedNote () {
       return this.notes.find(note => note.id === this.selectedId)
+    },
+    // Create a copy of the notes array. This copy will be used for visual purposes to sort by created date then by favorites.
+    // Sort it by created date then sort the favorites and non favorites
+    sortedNotes () {
+      return this.notes.slice()
+        .sort((a, b) => a.created - b.created)
+        .sort((a, b) => (a.favorite === b.favorite) ? 0 : a.favorite ? -1 : 1)
     }
   },
   watch: {
@@ -64,6 +71,7 @@ new Vue({
         }
       }
     },
+    // Toggles the note, ^= is shorthand for XOR comparison a = a ^ true
     favoriteNote () {
       this.selectedNote.favorite ^= true
     }
