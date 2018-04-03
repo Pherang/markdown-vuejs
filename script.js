@@ -16,24 +16,23 @@ new Vue({
   computed: {
     notePreview () {
       // Return markdown converted to HTML
-      return marked(this.content)
+      return this.selectedNote ? marked(this.selectedNote.content) : ''
+    },
+    selectedNote () {
+      return this.notes.find(note => note.id === this.selectedId)
     }
   },
   watch: {
     // This is the syntax when the options deep, immediate aren't required. handler (val, old) { } would be used if they were.
-    content: {
-      handler: 'saveNote'
+    notes: {
+      handler: 'saveNotes'
     }
   },
   methods: {
-    saveNote (val) {
-      console.log('Saving note: ', val)
+    saveNotes () {
       // Saves to localStorage in user's browser. If this was a fullstack app, we could save to a database as well.
-      localStorage.setItem('content', val)
-      this.reportOperation('saving note')
-    },
-    reportOperation (opName) {
-      console.log('The', opName, 'operation was completed!')
+      localStorage.setItem('content', JSON.stringify(this.notes))
+      console.log('Notes saved', new Date())
     },
     addNote () {
       const time = Date.now()

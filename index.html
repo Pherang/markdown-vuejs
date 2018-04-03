@@ -24,19 +24,21 @@
       </div>
       <div class="notes">
         <!-- Note list -->  
-        <div class="note" v-for="note in notes" @click="selectNote(note)">{{ note.title }}</div>
+        <div class="note" :class="{selected: note === selectedNote}" v-for="note in notes" @click="selectNote(note)">{{ note.title }}</div>
       </div>
     </aside>
 
     <!-- Main pane -->
-    <section class="main">
-      <textarea v-model="content"></textarea>
-    </section>
+    <template v-if="selectedNote">
+      <section class="main">
+        <textarea v-model="selectedNote.content"></textarea>
+      </section>
 
-    <!-- Preview pane -->
-    <aside class="preview" v-html="notePreview">
-      {{ notePreview }}
-    </aside>
+      <!-- Preview pane -->
+      <aside class="preview" v-html="notePreview">
+        {{ notePreview }}
+      </aside>
+    </template>
 
   </div>
   <!-- Some JavaScript -->
