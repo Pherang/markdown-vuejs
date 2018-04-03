@@ -32,7 +32,8 @@
     <template v-if="selectedNote">
       <section class="main">
         <div class="toolbar">
-          
+          <input v-model="selectedNote.title" placeholder="Note title">          
+          <button @click="removeNote" title="Remove Note"><i class="material-icons">delete</i>Delete</button>
         </div>
 
         <textarea v-model="selectedNote.content"></textarea>

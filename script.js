@@ -53,10 +53,17 @@ new Vue({
     selectNote (note) {
       this.selectedId = note.id
       console.log('Note was selected', note.id)
+    },
+    removeNote () {
+      if(this.selectedNote && confirm('Delete this note? Are you sure?')) {
+        console.log('Removing note', JSON.stringify(this.selectedNote.title))
+      }
     }
   },
   // An alternative to this is to init the data property instead of the code below.
-  created () { // Set content to the value stored in localStorage of the users browser this overwrites what is assigned when data() is called above
+  created () { 
+    // Set content to the value stored in localStorage of the users browser 
+    // this overwrites what is assigned when data() is called above
     // This happens because of the sequence of a Vue's life cycle.
     this.content = localStorage.getItem('content') || 'You can write in **markdown** here'
   }
